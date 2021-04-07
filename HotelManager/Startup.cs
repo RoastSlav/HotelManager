@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +26,18 @@ namespace HotelManager
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.Cookie.Name = "YourAppCookieName";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Identity/Account/Login";
+                // ReturnUrlParameter requires 
+                //using Microsoft.AspNetCore.Authentication.Cookies;
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,8 +58,8 @@ namespace HotelManager
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -55,6 +68,7 @@ namespace HotelManager
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
         }
     }
 }
