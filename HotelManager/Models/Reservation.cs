@@ -8,7 +8,6 @@ namespace HotelManager.Models
 {
     public class Reservation
     {
-        [Required, Key]
         public int ID { get; set; }
 
         [Required, Key]

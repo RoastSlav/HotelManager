@@ -17,6 +17,9 @@ namespace HotelManager.Models
         [Required]
         public string RoomType { get; set; }
 
+        [Required]
+        public bool Vacancy { get; set; } = true;
+
         public decimal PriceForAdult { get; set; }
 
         public decimal PriceForNonAdult { get; set; }
