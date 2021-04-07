@@ -16,10 +16,10 @@ namespace HotelManager.Models
         [Required]
         public string LastName { get; set; }
 
-        [Required, Key]
+        [Required]
         public int PhoneNumber { get; set; }
 
-        [Required, Key]
+        [Required]
         public string Email { get; set; }
 
         public bool Adult { get; set; } = true;

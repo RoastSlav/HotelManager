@@ -8,7 +8,7 @@ namespace HotelManager.Models
 {
     public class Room
     {
-        [Required, Key]
+        [Required]
         public int RoomNumber { get; set; }
 
         [Required]

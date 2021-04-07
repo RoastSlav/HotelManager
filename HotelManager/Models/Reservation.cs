@@ -10,7 +10,7 @@ namespace HotelManager.Models
     {
         public int ID { get; set; }
 
-        [Required, Key]
+        [Required]
         public int RoomNumber { get; set; }
 
         [Required]
