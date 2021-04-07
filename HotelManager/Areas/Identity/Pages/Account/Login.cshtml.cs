@@ -84,7 +84,14 @@ namespace HotelManager.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    if(User.IsInRole("admin"))
+                    {
+                        RedirectToAction("HomeAdmin","Home");
+                    }
+                    else
+                    {
+                        RedirectToAction("HomeUser", "Home");
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {

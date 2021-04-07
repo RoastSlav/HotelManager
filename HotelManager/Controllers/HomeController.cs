@@ -24,7 +24,14 @@ namespace HotelManager.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Authorize(Roles = "admin")]
+        public IActionResult HomeAdmin()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "User, Admin")]
+        public IActionResult HomeUser()
         {
             return View();
         }
