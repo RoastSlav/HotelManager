@@ -1,4 +1,5 @@
 ﻿using System;
+using HotelManager.Areas.Identity.Data;
 using HotelManager.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,12 @@ namespace HotelManager.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
+                services.AddDbContext<AuthDbContext>(options =>
+                    options.UseSqlServer(
+                        context.Configuration.GetConnectionString("AuthDbContextConnection")));
+
+                services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<AuthDbContext>();
             });
         }
     }
