@@ -2,58 +2,59 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Edit a room";
 }
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>EditRoom</title>
+    <title>EditReservation</title>
     <link href="SiteStile.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div class="text-center">
-        <h1 class="display-4">Добавяне на стая</h1>
+        <h1 class="display-4">Нова резервация</h1>
     </div>
     <form>
         <div class="form-group">
-            <label for="usr">№:</label>
+            <label for="usr">Стая №:</label>
             <input type="number">
         </div>
         <div class="form-group">
-            <label for="usr">Тип:</label>
+            <label for="usr">Служител направил резервация:</label>
+            <input type="text" class="form-control col-6" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="usr">Клиент:</label>
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                     Избери
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Две единични легла</a></li>
-                    <li><a href="#">Апартамент</a></li>
-                    <li><a href="#">Стая с двойно легло</a></li>
-                    <li><a href="#">Пентхаус</a></li>
-                    <li><a href="#">Мезонет</a></li>
-
                 </ul>
             </div>
         </div>
         <div class="form-group">
-            <label for="usr">Капацитет:</label>
-            <input type="number">
+            <label for="usr">Дата на настаняване:</label>
+            <input type="date" class="form-control col-6" id="usr5">
         </div>
         <div class="form-group">
-            <label for="usr">Цена(възрастен):</label>
-            <input type="text" class="form-control col-2" id="usr4">
+            <label for="usr">Дата на напускане:</label>
+            <input type="date" class="form-control col-6" id="usr6">
         </div>
         <div class="form-group">
-            <label for="usr">Цена(дете):</label>
-            <input type="text" class="form-control col-2" id="usr5">
+            <label for="email">All inclusive:</label>
+            <div><label><input type="checkbox" value="">Да</label></div>
         </div>
-        <div class="custom-file col-lg-3">
-            <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+        <div class="form-group">
+            <label for="email">Закуска:</label>
+            <div><label><input type="checkbox" value="">Да</label></div>
+        </div>
+        <div class="form-group">
+            <label for="usr">Дължима сума:</label>
+            <input type="text" class="form-control col-6" id="usr8">
         </div>
         <div>
             <button type="button" class="btn btn-primary">Запази</button>
@@ -63,7 +64,6 @@
             <button type="button" class="btn btn-primary">Изтрий</button>
         </div>
     </form>
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap-4.3.1.js"></script>
