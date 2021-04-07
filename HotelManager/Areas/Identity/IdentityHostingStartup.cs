@@ -20,7 +20,13 @@ namespace HotelManager.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AuthDbContextConnection")));
 
-                services.AddDefaultIdentity<AuthUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<AuthUser>(options =>
+                {
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.SignIn.RequireConfirmedAccount = false;
+                    })
                     .AddEntityFrameworkStores<AuthDbContext>();
             });
         }
