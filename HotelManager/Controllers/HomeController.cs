@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace HotelManager.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -25,7 +24,14 @@ namespace HotelManager.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Authorize(Roles = "admin")]
+        public IActionResult HomeAdmin()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "User, Admin")]
+        public IActionResult HomeUser()
         {
             return View();
         }

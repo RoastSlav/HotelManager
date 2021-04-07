@@ -17,7 +17,7 @@ namespace HotelManager.Models
         public string ByUser { get; set; }
 
         [Required]
-        public ISet Guests { get; set; }
+        public string Guests { get; set; }
 
         [Required]
         public DateTime ReservationDate { get; set; }
