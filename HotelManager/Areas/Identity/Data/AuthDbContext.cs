@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelManager.Data
 {
-    public class AuthDbContext : IdentityDbContext<User>
+    public class AuthDbContext : IdentityDbContext<AuthUser>
     {
         public AuthDbContext(DbContextOptions<AuthDbContext> options)
             : base(options)
