@@ -25,9 +25,58 @@ namespace HotelManager.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditRole()
+        public async Task<IActionResult> EditRole(string id)
         {
-            return View();
+           var role = await roleManager.FindByIdAsync(id);
+
+            if(role == null)
+            {
+                return View("NotFound");
+            }
+
+            var model = new EditRoleViewModel
+            {
+                Id = role.Id,
+                RoleName = role.Name
+            };
+
+            foreach (var user in userManager.Users)
+            {
+                if(await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    model.Users.Add(user.UserName);
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditRole(EditRoleViewModel model)
+        {
+            var role = await roleManager.FindByIdAsync(model.Id);
+
+            if (role == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                role.Name = model.RoleName;
+                var result = await roleManager.UpdateAsync(role);
+
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("ListRoles");
+                }
+
+                foreach (var erorr in result.Errors)
+                {
+                    ModelState.AddModelError("", erorr.Description);
+                }
+            }
+
+            return View(model);
         }
 
         [HttpGet]
@@ -51,7 +100,7 @@ namespace HotelManager.Controllers
 
                 if(result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ListRoles");
                 }
 
                 foreach (var error in result.Errors)
@@ -160,6 +209,91 @@ namespace HotelManager.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return View("NotFound");
+            }
+
+            var userRoles = await userManager.GetRolesAsync(user);
+
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                Username = user.UserName,
+                FirstName = user.FirstName,
+                SecondName = user.SecondName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                EGN = user.EGN,
+                Email = user.Email,
+                DateOfEmployment = user.DateOfEmployment,
+                DateOfTermination = user.DateOfTermination,
+                IsActive = !user.LockoutEnabled,
+                Roles = userRoles
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                user.Id = model.Id;
+                user.UserName = model.Username;
+                user.FirstName = model.FirstName;
+                user.SecondName = model.SecondName;
+                user.LastName = model.LastName;
+                user.PhoneNumber = model.PhoneNumber;
+                user.EGN = model.EGN;
+                user.Email = model.Email;
+                user.DateOfEmployment = model.DateOfEmployment;
+                user.DateOfTermination = model.DateOfTermination;
+                user.LockoutEnabled = !model.IsActive;
+
+                if (model.NewPassword != null)
+                {
+                    var resetToken = await userManager.GeneratePasswordResetTokenAsync(user);
+                    var addPasswordResult = await userManager.ResetPasswordAsync(user, resetToken, model.NewPassword);
+                    if (!addPasswordResult.Succeeded)
+                    {
+                        foreach (var error in addPasswordResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+
+                        return View(model);
+                    }
+                }
+
+                var result = await userManager.UpdateAsync(user);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("ListUsers");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+
+                return View(model);
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> ManageUserRoles(string userId)
         {
             var user = await userManager.FindByIdAsync(userId);
@@ -225,87 +359,28 @@ namespace HotelManager.Controllers
             return RedirectToAction("EditUser", new { Id = userId });
         }
 
-
         [HttpGet]
-        public async Task<IActionResult> EditUser(string id)
+        public IActionResult userSearch(string search)
         {
-            var user = await userManager.FindByIdAsync(id);
-
-            if (user == null)
+            if (!string.IsNullOrEmpty(search))
             {
-                return View("NotFound");
-            }
-
-            var userRoles = await userManager.GetRolesAsync(user);
-
-            var model = new EditUserViewModel
-            {
-                Id = user.Id,
-                Username = user.UserName,
-                FirstName = user.FirstName,
-                SecondName = user.SecondName,
-                LastName = user.LastName,
-                PhoneNumber = user.PhoneNumber,
-                EGN = user.EGN,
-                Email = user.Email,
-                DateOfEmployment = user.DateOfEmployment,
-                DateOfTermination = user.DateOfTermination,
-                IsActive = !user.LockoutEnabled,
-                Roles = userRoles
-            };
-
-            return View(model);
+                var users = userManager.Users.Where(x => x.UserName.Contains(search)).ToList();
+                return View("ListUsers", users);
+            }  
+            
+            return RedirectToAction("ListUsers");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        [HttpGet]
+        public IActionResult roleSearch(string search)
         {
-            var user = await userManager.FindByIdAsync(model.Id);
-
-            if (user == null)
+            if (!string.IsNullOrEmpty(search))
             {
-                return View("NotFound");
+                var roles = roleManager.Roles.Where(x => x.Name.Contains(search)).ToList();
+                return View("ListRoles", roles);
             }
-            else
-            {
-                user.Id = model.Id;
-                user.UserName = model.Username;
-                user.FirstName = model.FirstName;
-                user.SecondName = model.SecondName;
-                user.LastName = model.LastName;
-                user.PhoneNumber = model.PhoneNumber;
-                user.EGN = model.EGN;
-                user.Email = model.Email;
-                user.DateOfEmployment = model.DateOfEmployment;
-                user.DateOfTermination = model.DateOfTermination;
-                user.LockoutEnabled = !model.IsActive;
 
-                var resetToken = await userManager.GeneratePasswordResetTokenAsync(user);
-                var addPasswordResult = await userManager.ResetPasswordAsync(user, resetToken, model.NewPassword);
-                if (!addPasswordResult.Succeeded)
-                {
-                    foreach (var error in addPasswordResult.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-
-                    return View(model);
-                }
-
-                var result = await userManager.UpdateAsync(user);
-                if(result.Succeeded)
-                {
-                    return RedirectToAction("ListUsers");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-
-
-                return View(model);
-            }
+            return RedirectToAction("ListRoles");
         }
 
         [HttpGet]

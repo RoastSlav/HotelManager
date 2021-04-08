@@ -1,9 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<!doctype html>
+﻿@model HotelManager.ViewModels.EditRoleViewModel
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -33,31 +29,19 @@
         </div>
     </form>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Роля</th>
-                <th scope="col">Потребител</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td>
-                    <button type="button" class="btn btn-primary">Добави или промени роля</button>
-                </td>
-            </tr>
+            <div asp-validation-summary="All" class="text-danger"></div>
 
-        </tbody>
-    </table>
-
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a asp-action="ListRoles" class="btn btn-primary">Cancel</a>
+                </div>
+            </div>          
+        </form>
+    </body>
+</html>
+@section Scripts {
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap-4.3.1.js"></script>
-</body>
-</html>
+}
