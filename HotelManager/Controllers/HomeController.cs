@@ -24,7 +24,7 @@ namespace HotelManager.Controllers
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult HomeAdmin()
         {
             return View();

@@ -1,5 +1,6 @@
 ﻿using HotelManager.Areas.Identity.Data;
 using HotelManager.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelManager.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -27,6 +29,75 @@ namespace HotelManager.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                IdentityRole identityRole = new IdentityRole
+                {
+                    Name = model.RoleName
+                };
+
+                IdentityResult result = await roleManager.CreateAsync(identityRole);
+
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+            return View();
+
+        }
+
+        [HttpGet]
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUser(AddUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new AuthUser()
+                {
+                    UserName = model.Username,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    SecondName = model.SecondName,
+                    LastName = model.LastName,
+                    EGN = model.EGN,
+                    DateOfEmployment = model.DateOfEmployment,
+                    DateOfTermination = model.DateOfTermination,
+                    PhoneNumber = model.PhoneNumber,
+                    LockoutEnabled = false                    
+                };
+
+                var result = await userManager.CreateAsync(user, model.Password);
+
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("ListUsers");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(model);
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> ManageUserRoles(string userId)
@@ -94,11 +165,6 @@ namespace HotelManager.Controllers
             return RedirectToAction("EditUser", new { Id = userId });
         }
 
-        [HttpGet]
-        public IActionResult AddUser()
-        {
-            return View();
-        }
 
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
@@ -178,30 +244,5 @@ namespace HotelManager.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                IdentityRole identityRole = new IdentityRole
-                {
-                    Name = model.RoleName
-                };
-
-                IdentityResult result = await roleManager.CreateAsync(identityRole);
-
-                if(result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-            }
-            return View();
-
-        }
     }
 }
