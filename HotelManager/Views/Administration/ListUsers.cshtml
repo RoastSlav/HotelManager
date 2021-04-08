@@ -10,14 +10,12 @@
 </head>
 <body>
     <div class="container">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search">
-
+        <form class="form-inline my-2 my-lg-0" method="get" asp-action="userSearch">
+            <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Търсене</button>
-            <button asp-controller="Administration" asp-action="AddUser" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Добавяне</button>
-
+            <a asp-controller="Administration" asp-action="AddUser" class="btn btn-outline-primary my-2 my-sm-0 ml-3" type="submit">Добавяне</a>
         </form>
-        <table class="table table-striped">
+        <table class="table table-striped mt-3">
             <thead>
                 <tr>
                     <th scope="col"></th>

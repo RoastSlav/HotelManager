@@ -359,7 +359,29 @@ namespace HotelManager.Controllers
             return RedirectToAction("EditUser", new { Id = userId });
         }
 
+        [HttpGet]
+        public IActionResult userSearch(string search)
+        {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var users = userManager.Users.Where(x => x.UserName.Contains(search)).ToList();
+                return View("ListUsers", users);
+            }  
+            
+            return RedirectToAction("ListUsers");
+        }
 
+        [HttpGet]
+        public IActionResult roleSearch(string search)
+        {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var roles = roleManager.Roles.Where(x => x.Name.Contains(search)).ToList();
+                return View("ListRoles", roles);
+            }
+
+            return RedirectToAction("ListRoles");
+        }
 
         [HttpGet]
         public IActionResult ListUsers()
