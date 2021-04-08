@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HotelManager.ViewModels
 {
-    public class UserRoleModelView
+    public class UserRoleViewModel
     {
         public string RoleId { get; set; }
 

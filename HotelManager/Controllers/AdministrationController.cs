@@ -39,16 +39,16 @@ namespace HotelManager.Controllers
                 return View("NotFound");
             }
 
-            var model = new List<UserRoleModelView>();
+            var model = new List<UserRoleViewModel>();
 
             foreach (var role in roleManager.Roles)
             {
-                var userRolesViewModel = new UserRoleModelView
+                var userRolesViewModel = new UserRoleViewModel
                 {
                     RoleId = role.Id,
                     RoleName = role.Name,
-                };
-
+                }; 
+           
                 if (await userManager.IsInRoleAsync(user, role.Name))
                 {
                     userRolesViewModel.IsSelected = true;
@@ -62,6 +62,36 @@ namespace HotelManager.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageUserRoles(List<UserRoleViewModel> model, string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+
+            if(user == null)
+            {
+                return View("NotFound");
+            }
+
+            var roles = await userManager.GetRolesAsync(user);
+            var result = await userManager.RemoveFromRolesAsync(user, roles);
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot remove user existing roles");
+                return View(model);
+            }
+
+            result = await userManager.AddToRolesAsync(user, model.Where(x => x.IsSelected).Select(y => y.RoleName));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot remove user existing roles");
+                return View(model);
+            }
+
+            return RedirectToAction("EditUser", new { Id = userId });
         }
 
         [HttpGet]
