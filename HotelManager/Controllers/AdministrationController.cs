@@ -255,6 +255,12 @@ namespace HotelManager.Controllers
             return View(users);
         }
 
+        [HttpGet]
+        public IActionResult ListRoles()
+        {
+            var roles = roleManager.Roles.ToList();
+            return View(roles);
+        }
 
     }
 }

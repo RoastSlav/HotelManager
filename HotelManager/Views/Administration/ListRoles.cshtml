@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<IdentityRole> 
 <!doctype html>
 <html>
 <head>
@@ -11,28 +7,28 @@
     <link href="SiteStile.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
     <div class="text-center">
         <h1 class="display-4">Всички роли</h1>
     </div>
+    <a asp-action="CreateRole" class="btn btn-primary" cl>Добави роля</a>
     <div class="container">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Id Role</th>
                     <th scope="col">Роля</th>
+                    <th scope="col">Id Role</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
-
-                    <th scope="col"><button type="button" class="btn btn-link" cl>Добави роля</button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
+                    @foreach (var role in Model)
+                    {
+                        <td>@role.Name</td>
+                        <td>@role.Id</td>
+                    }
                     <td>
                         <button type="button" class="btn btn-primary">Редактирай</button>
                     </td>
@@ -44,8 +40,6 @@
             </tbody>
         </table>
     </div>
-
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap-4.3.1.js"></script>

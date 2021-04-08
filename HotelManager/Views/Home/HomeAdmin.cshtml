@@ -1,25 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>HomeAdmin</title>
-    <link href="SiteStile.css" rel="stylesheet" type="text/css">
-    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-    <div class="text-center">
-        <h1 class="display-4">Добре дошли</h1>
-    </div>
-    <button type="button" class="btn btn-info btn-block">Потребители</button>
-    <button type="button" class="btn btn-info btn-block">Стаи</button>
-    <button type="button" class="btn btn-info btn-block">Клиенти</button>
-    <button type="button" class="btn btn-info btn-block">Резервации</button>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>HomeAdmin</title>
+        <link href="SiteStile.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <a asp-action="ListUsers" asp-controller="Administration" class="btn btn-block btn-info card-body">Потребители</a>
+        <a asp-action="ListRoles" asp-controller="Administration" class="btn btn-block btn-info card-body">Роли</a>
+        <a asp-action="ListRoom" asp-controller="Room" class="btn btn-block btn-info card-body">Стаи</a>
+        <a asp-action="ListClient" asp-controller="Client" class="btn btn-block btn-info card-body">Клиенти</a>
+        <a asp-action="ListReservation" asp-controller="Reservation" class="btn btn-block btn-info card-body">Резервации</a>
+    </body>
 </html>
