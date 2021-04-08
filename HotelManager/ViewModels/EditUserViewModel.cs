@@ -16,43 +16,44 @@ namespace HotelManager.ViewModels
 
             [DataType(DataType.Password)]
             [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
-            public string? ConfirmPassword { get; set; }
-
-            [Phone]
-            [Required]
-            public string PhoneNumber { get; set; }
-
-            [Required]
-            [StringLength(100)]
-            public string Username { get; set; }
-
-            [Required]
-            [StringLength(100)]
-            public string FirstName { get; set; }
-
-            [Required]
-            [StringLength(100)]
-            public string SecondName { get; set; }
-
-            [Required]
-            [StringLength(100)]
-            public string LastName { get; set; }
-
-            [Required]
-            public int EGN { get; set; }
-
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-
-            [Required]
-            public DateTime DateOfEmployment { get; set; }
-
-            public DateTime? DateOfTermination { get; set; }
-
-            [Required]
-            public bool IsActive { get; set; }
+            public string? ConfirmPassword { get; set; } 
         }
+
+        [Phone]
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Username { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string SecondName { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string LastName { get; set; }
+
+        [Required]
+        public int EGN { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public DateTime DateOfEmployment { get; set; }
+
+        public DateTime? DateOfTermination { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; }
+
 
         public Input input = new Input();
     }

@@ -1,9 +1,53 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@using HotelManager.Areas.Identity.Data
+@model IEnumerable<AuthUser>
+<h1>Потребители</h1>
+
+@if (Model.Any())
+{
+    <a asp-area="Identity" asp-controller="Account" asp-action="Register"
+       class="btn btn-primary mb-3">
+        Добави нов потребител
+    </a>
+
+    foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                ИД : @user.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@user.UserName</h5>
+                <h5 class="card-title">@user.FirstName</h5>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-danger">Редактирай</a>            
+            </div>
+        </div>
+    }
 }
-<!doctype html>
+else
+{
+    <div class="card">
+        <div class="card-header>
+            Няма потребители
+        </div>
+        <div class="card-body">
+            <h5 class="card-body">
+                Използвайте бутона да създадете потребител
+            </h5>
+            <a class="btn btn-primary" asp-area="Identity" asp-page="Identity/Account/Register">
+                Добави потребител
+            </a>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+@*<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -35,6 +79,8 @@
                 </tr>
             </thead>
             <tbody>
+                }
+
                 <tr>
                     <th scope="row">1</th>
                     <td></td>
@@ -158,5 +204,5 @@
         </nav>
     </div>
 </body>
-</html>
+</html>*@
 

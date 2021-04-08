@@ -1,4 +1,5 @@
-﻿using HotelManager.ViewModels;
+﻿using HotelManager.Areas.Identity.Data;
+using HotelManager.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,10 +12,14 @@ namespace HotelManager.Controllers
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<AuthUser> userManager;
 
-        public AdministrationController(RoleManager<IdentityRole> roleManager)
+        public AdministrationController(
+            RoleManager<IdentityRole> roleManager,
+            UserManager<AuthUser> userManager)
         {
             this.roleManager = roleManager;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -22,6 +27,14 @@ namespace HotelManager.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult ListUsers()
+        {
+            var users = userManager.Users.ToList();
+            return View(users);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
@@ -46,6 +59,7 @@ namespace HotelManager.Controllers
                 }
             }
             return View();
-        }
+
+    }
     }
 }
