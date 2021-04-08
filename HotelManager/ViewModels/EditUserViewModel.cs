@@ -63,6 +63,6 @@ namespace HotelManager.ViewModels
 
         public Input input = new Input();
         
-        public List<string> Roles { set; get; }
+        public IList<string> Roles { set; get; }
     }
 }

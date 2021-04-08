@@ -112,34 +112,34 @@
                     </td>
                     <td>
                         <div asp-validation-summary="All" class="text-danger"></div>
-                        <button type="button" class="btn btn-primary">Запази</button>
+                        <button type="submit" class="btn btn-primary">Запази</button>
                         <button asp-action="ListUsers" type="button" class="btn btn-primary">Назад</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="card">
-            <div class="card-header">
-                <h3>Роли на потребителя</h3>
-            </div>
-            <div class="card-body">
-                @if(Model.Roles.Any())
-                {
-                    foreach(var role in Model.Roles)
-                    {
-                        <h5 class="card-title">@role</h5>
-                    }
-                }
-                else
-                {
-                    <h5 class="card-title">Не принадлежи към роля</h5>
-                }
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary">Промени роли</a>
-            </div>
-        </div>
     </form>
+    <div class="card">
+        <div class="card-header">
+            <h3>Роли на потребителя</h3>
+        </div>
+        <div class="card-body">
+            @if (Model.Roles.Any())
+            {
+                foreach (var role in Model.Roles)
+                {
+                    <h5 class="card-title">@role</h5>
+                }
+            }
+            else
+            {
+                <h5 class="card-title">Не принадлежи към роля</h5>
+            }
+        </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-primary">Промени роли</a>
+        </div>
+    </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap-4.3.1.js"></script>

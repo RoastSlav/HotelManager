@@ -40,7 +40,7 @@
                         <td>@user.LastName</td>
                         <td>@user.Email</td>
                         <td>
-                            <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary">Редактирай</a>
+                            <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary" asp-route-id="@user.Id">Редактирай</a>
                         </td>
                     </tr>
                 }

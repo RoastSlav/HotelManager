@@ -37,31 +37,71 @@ namespace HotelManager.Controllers
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {
-            //var user = await userManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id);
 
-            //if(user == null)
-            //{
-            //    return View("NotFound");
-            //}
+            if (user == null)
+            {
+                return View("NotFound");
+            }
 
-            //var userRoles = await userManager.GetRolesAsync(user);
+            var userRoles = await userManager.GetRolesAsync(user);
 
-            //var model = new EditUserViewModel
-            //{
-            //    Id = user.Id,
-            //    Username = user.UserName,
-            //    FirstName = user.FirstName,
-            //    SecondName = user.SecondName,
-            //    LastName = user.LastName,
-            //    PhoneNumber = user.PhoneNumber,
-            //    EGN = user.EGN,
-            //    Email = user.Email,
-            //    DateOfEmployment = user.DateOfEmployment,
-            //    DateOfTermination = user.DateOfTermination,
-            //    IsActive = !user.LockoutEnabled,
-            //    Roles = userRoles
-            //};
-            return View();
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                Username = user.UserName,
+                FirstName = user.FirstName,
+                SecondName = user.SecondName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                EGN = user.EGN,
+                Email = user.Email,
+                DateOfEmployment = user.DateOfEmployment,
+                DateOfTermination = user.DateOfTermination,
+                IsActive = !user.LockoutEnabled,
+                Roles = userRoles
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                user.Id = model.Id;
+                user.UserName = model.Username;
+                user.FirstName = model.FirstName;
+                user.SecondName = model.SecondName;
+                user.LastName = model.LastName;
+                user.PhoneNumber = model.PhoneNumber;
+                user.EGN = model.EGN;
+                user.Email = model.Email;
+                user.DateOfEmployment = model.DateOfEmployment;
+                user.DateOfTermination = model.DateOfTermination;
+                user.LockoutEnabled = !model.IsActive;
+
+                var result = await userManager.UpdateAsync(user);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("ListUsers");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+
+                return View(model);
+            }
         }
 
         [HttpGet]
