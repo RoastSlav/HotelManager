@@ -220,6 +220,18 @@ namespace HotelManager.Controllers
                 user.DateOfTermination = model.DateOfTermination;
                 user.LockoutEnabled = !model.IsActive;
 
+                var resetToken = await userManager.GeneratePasswordResetTokenAsync(user);
+                var addPasswordResult = await userManager.ResetPasswordAsync(user, resetToken, model.NewPassword);
+                if (!addPasswordResult.Succeeded)
+                {
+                    foreach (var error in addPasswordResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+
+                    return View(model);
+                }
+
                 var result = await userManager.UpdateAsync(user);
                 if(result.Succeeded)
                 {
