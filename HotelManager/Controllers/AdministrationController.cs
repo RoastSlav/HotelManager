@@ -29,6 +29,42 @@ namespace HotelManager.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ManageUserRoles(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            ViewBag.userId = userId;
+
+            if(user == null)
+            {
+                return View("NotFound");
+            }
+
+            var model = new List<UserRoleModelView>();
+
+            foreach (var role in roleManager.Roles)
+            {
+                var userRolesViewModel = new UserRoleModelView
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name,
+                };
+
+                if (await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRolesViewModel.IsSelected = true;
+                }
+                else
+                {
+                    userRolesViewModel.IsSelected = false;
+                }
+
+                model.Add(userRolesViewModel);
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
         public IActionResult AddUser()
         {
             return View();
