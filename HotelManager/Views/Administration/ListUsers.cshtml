@@ -27,22 +27,26 @@
                     <th scope="col">Фамилия</th>
                     <th scope="col">Имейл</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var user in Model)
                 {
-                    <tr>
-                        <th scope="row"></th>
-                        <td>@user.UserName</td>
-                        <td>@user.FirstName</td>
-                        <td>@user.SecondName</td>
-                        <td>@user.LastName</td>
-                        <td>@user.Email</td>
-                        <td>
-                            <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary" asp-route-id="@user.Id">Редактирай</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>@user.UserName</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.SecondName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary" asp-route-id="@user.Id">Редактирай</a>
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Administration" asp-action="DeleteUser" class="btn btn-primary" asp-route-id="@user.Id">Изтрии</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

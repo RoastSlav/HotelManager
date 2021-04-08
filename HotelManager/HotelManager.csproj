@@ -19,4 +19,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\confirmDelete.js" />
+  </ItemGroup>
+
 </Project>

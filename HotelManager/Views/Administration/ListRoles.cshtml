@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IdentityRole> 
+﻿@model IEnumerable<IdentityRole>
 <!doctype html>
 <html>
 <head>
@@ -11,37 +11,40 @@
     <div class="text-center">
         <h1 class="display-4">Всички роли</h1>
     </div>
-    <a asp-action="CreateRole" class="btn btn-primary" cl>Добави роля</a>
+    <a asp-action="CreateRole" class="btn btn-primary mb-3 ml-3" cl>Добави роля</a>
     <div class="container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Роля</th>
-                    <th scope="col">ID</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    @foreach (var role in Model)
-                    {
-                        <td>@role.Name</td>
-                        <td>@role.Id</td>
-                    }
-                    <td>
-                        <button type="button" class="btn btn-primary">Редактирай</button>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger">Изтрий</button>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
+        @foreach (var role in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    ID : @role.Id
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@role.Name</h5>
+                </div>
+                <div class="card-footer">
+                    <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
+                        <a asp-action="EditRole" class="btn btn-primary mr-2">Редактирай</a>
+                        <span id="confirmDeleteSpan_@role.Id" style="display:none">
+                            <span>Сигурни ли сте че искате да изтриете ролята?</span>
+                            <button type="submit" class="btn btn-danger">Да</button>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@role.Id', false)">Не</a>
+                        </span>
+                        <span id="deleteSpan_@role.Id">
+                            <a href="#" class="btn btn-danger"
+                               onclick="confirmDelete('@role.Id', true)">Изтрии</a>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        }
     </div>
+</body>
+</html>
+@section Scripts {
+    <script src="~/js/confirmDelete.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap-4.3.1.js"></script>
-</body>
-</html>
+}
