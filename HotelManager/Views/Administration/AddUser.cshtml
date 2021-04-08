@@ -11,66 +11,76 @@
     <title>AddUser</title>
     <link href="SiteStile.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
     <div class="text-center">
         <h1 class="display-4">Добавяне на потребител</h1>
     </div>
-    <form>
-        <div class="form-group">
-            <label for="usr">Потребителско име:</label>
-            <input type="text" class="form-control col-6" id="usr">
-        </div>
-        <div class="form-group">
-            <label for="pwd">	Парола:</label>
-            <input type="password" class="form-control col-6" id="pwd">
-        </div>
-        <div class="form-group">
-            <label for="usr">Собствено име:</label>
-            <input type="text" class="form-control col-6" id="usr1">
-        </div>
-        <div class="form-group">
-            <label for="usr">Бащино име:</label>
-            <input type="text" class="form-control col-6" id="usr2">
-        </div>
-        <div class="form-group">
-            <label for="usr">Фамилия:</label>
-            <input type="text" class="form-control col-6" id="usr3">
-        </div>
-        <div class="form-group">
-            <label for="usr">ЕГН:</label>
-            <input type="text" class="form-control col-6" id="usr4">
-        </div>
-        <div class="form-group">
-            <label for="email">Имейл:</label>
-            <input type="text" class="form-control col-6" id="email">
-        </div>
-        <div class="form-group">
-            <label for="usr">Дата назначаване:</label>
-            <input type="date" class="form-control col-6" id="usr5">
-        </div>
-        <div class="form-group">
-            <label for="usr">Акаунт: </label>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                    Избери
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Активен</a></li>
-                    <li><a href="#">Неактивен</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="usr">Дата освобождаване(незадължителна):</label>
-            <input type="date" class="form-control col-6" id="usr6">
-        </div>
-        <button type="button" class="btn btn-primary">Добави</button>
-    </form>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap-4.3.1.js"></script>
+    <div class="container">
+        <table class="table table-striped">
+
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Потребителско име:</td>
+                    <td><input type="text" class="form-control col-12" id="usr1"></td>
+                    <td>Парола</td>
+                    <td><input type="text" class="form-control col-12" id="usr2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Собствено име</td>
+                    <td><input type="text" class="form-control col-12" id="usr3"></td>
+                    <td>Бащино име</td>
+                    <td><input type="text" class="form-control col-12" id="usr4"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Фамиля</td>
+                    <td><input type="text" class="form-control col-12" id="usr5"></td>
+                    <td>Телефон</td>
+                    <td><input type="text" class="form-control col-12" id="usr6"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>ЕГН</td>
+                    <td><input type="text" class="form-control col-12" id="usr7"></td>
+                    <td>Имейл</td>
+                    <td><input type="text" class="form-control col-12" id="usr8"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Дата назначаване</td>
+                    <td><input type="date" class="form-control col-12" id="usr0"></td>
+                    <td>Дата освобождаване</td>
+                    <td><input type="date" class="form-control col-12" id="usr9"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Астивен Акаунт</td>
+                    <td><div><label><input type="checkbox" value="">Да</label></div></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Добави</button>
+    </div>
 </body>
 </html>

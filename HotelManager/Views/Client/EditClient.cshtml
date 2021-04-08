@@ -11,43 +11,50 @@
     <title>EditClient</title>
     <link href="SiteStile.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
     <div class="text-center">
         <h1 class="display-4">Добавяне на клиент</h1>
     </div>
-    <form>
-        <div class="form-group">
-            <label for="usr">Собствено име:</label>
-            <input type="text" class="form-control col-6" id="usr1">
-        </div>
-        <div class="form-group">
-            <label for="usr">Фамилия:</label>
-            <input type="text" class="form-control col-6" id="usr3">
-        </div>
-        <div class="form-group">
-            <label for="usr">Телефон:</label>
-            <input type="text" class="form-control col-6" id="usr4">
-        </div>
-        <div class="form-group">
-            <label for="email">Имейл:</label>
-            <input type="text" class="form-control col-6" id="email">
-        </div>
-        <div class="form-group">
-            <label for="email">Възрастен:</label>
-            <div><label><input type="checkbox" value="">Над 18 год.</label></div>
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary">Запази</button>
-        </div>
-        <div></div>
-        <div>
-            <button type="button" class="btn btn-primary">Изтрий</button>
-        </div>
-    </form>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap-4.3.1.js"></script>
+    <div class="container">
+        <table class="table table-striped">
+
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Собствено име</td>
+                    <td><input type="text" class="form-control col-12" id="usr1"></td>
+                    <td>Фамилия</td>
+                    <td><input type="text" class="form-control col-12" id="usr2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Телефон</td>
+                    <td><input type="text" class="form-control col-12" id="usr3"></td>
+                    <td>Имейл</td>
+                    <td><input type="text" class="form-control col-12" id="usr4"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Възрастен</td>
+                    <td><div><label><input type="checkbox" value="">Над 18 год.</label></div></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Запазване</button>
+        <button class="btn btn-danger my-2 my-sm-0" type="submit">Изтриване</button>
+    </div>
 </body>
 </html>
