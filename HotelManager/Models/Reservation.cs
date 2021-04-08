@@ -8,7 +8,6 @@ namespace HotelManager.Models
 {
     public class Reservation
     {
-        [Required]
         public int ID { get; set; }
 
         [Required]
@@ -26,9 +25,9 @@ namespace HotelManager.Models
         [Required]
         public DateTime LeavingDate { get; set; }
 
-        public bool IncludedBreakfast { get; set; }
+        public bool IncludedBreakfast { get; set; } = false;
 
-        public bool AllInclusive { get; set; }
+        public bool AllInclusive { get; set; } = false;
 
         [Required]
         public decimal TotalPrice { get; set; }

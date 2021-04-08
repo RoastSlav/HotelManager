@@ -8,7 +8,6 @@ namespace HotelManager.Models
 {
     public class Client
     {
-        [Required]
         public int ID { get; set; }
 
         [Required]
@@ -18,8 +17,11 @@ namespace HotelManager.Models
         public string LastName { get; set; }
 
         [Required]
+        public int PhoneNumber { get; set; }
+
+        [Required]
         public string Email { get; set; }
 
-        public bool Adult { get; set; }
+        public bool Adult { get; set; } = true;
     }
 }
