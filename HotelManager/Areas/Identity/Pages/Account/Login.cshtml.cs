@@ -84,14 +84,7 @@ namespace HotelManager.Areas.Identity.Pages.Account
                 {
                     var user = await _userManager.FindByNameAsync(Input.Username);
                     _logger.LogInformation("User logged in.");
-                    if(await _userManager.IsInRoleAsync(user,"Admin"))
-                    {
-                       return RedirectToAction("HomeAdmin", "Home");
-                    }
-                    else
-                    {
-                       return RedirectToAction("HomeUser", "Home");
-                    }
+                    return RedirectToAction("index", "Home");
                 }
                 if (result.RequiresTwoFactor)
                 {

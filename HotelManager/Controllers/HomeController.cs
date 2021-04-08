@@ -24,18 +24,6 @@ namespace HotelManager.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult HomeAdmin()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "User, Admin")]
-        public IActionResult HomeUser()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
