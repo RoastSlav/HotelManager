@@ -10,62 +10,72 @@
     <title>EditReservation</title>
     <link href="SiteStile.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
     <div class="text-center">
         <h1 class="display-4">Нова резервация</h1>
     </div>
-    <form>
-        <div class="form-group">
-            <label for="usr">Стая №:</label>
-            <input type="number">
-        </div>
-        <div class="form-group">
-            <label for="usr">Служител направил резервация:</label>
-            <input type="text" class="form-control col-6" id="usr">
-        </div>
-        <div class="form-group">
-            <label for="usr">Клиент:</label>
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                    Избери
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                </ul>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="usr">Дата на настаняване:</label>
-            <input type="date" class="form-control col-6" id="usr5">
-        </div>
-        <div class="form-group">
-            <label for="usr">Дата на напускане:</label>
-            <input type="date" class="form-control col-6" id="usr6">
-        </div>
-        <div class="form-group">
-            <label for="email">All inclusive:</label>
-            <div><label><input type="checkbox" value="">Да</label></div>
-        </div>
-        <div class="form-group">
-            <label for="email">Закуска:</label>
-            <div><label><input type="checkbox" value="">Да</label></div>
-        </div>
-        <div class="form-group">
-            <label for="usr">Дължима сума:</label>
-            <input type="text" class="form-control col-6" id="usr8">
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary">Запази</button>
-        </div>
-        <div></div>
-        <div>
-            <button type="button" class="btn btn-primary">Изтрий</button>
-        </div>
-    </form>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap-4.3.1.js"></script>
+    <div class="container">
+        <table class="table table-striped">
+
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Стая</td>
+                    <td>
+                        <label for="usr">№:</label>
+                        <input type="number">
+                    </td>
+                    <td>Резервацията е направена от:</td>
+                    <td><input type="text" class="form-control col-12" id="usr4"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Клиенти</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                Избери
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                            </ul>
+                        </div>
+                    </td>
+                    <td>Закуска</td>
+                    <td>
+                        <div><label><input type="checkbox" value="">Да</label></div>
+                    </td>
+                    <td>All Inclusive</td>
+                    <td><div><label><input type="checkbox" value="">Да</label></div></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Дата настаняване:</td>
+                    <td><input type="date" class="form-control col-12" id="usr5"></td>
+                    <td>Дата напускане:</td>
+                    <td><input type="date" class="form-control col-12" id="usr6"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Дължима сума</td>
+                    <td><input type="text" class="form-control col-12" id="usr4"></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Запазване</button>
+        <button class="btn btn-danger my-2 my-sm-0" type="submit">Изтриване</button>
+    </div>
 </body>
 </html>

@@ -1,0 +1,150 @@
+﻿@model HotelManager.ViewModels.EditUserViewModel
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Редактирай потребител</title>
+    <link href="SiteStile.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Промяна на потребител</h1>
+    </div>
+    <form method="post">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Id">ID</label>
+                            <input type="text" asp-for="Id" disabled class="form-control">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Username">Потребителско име:</label>
+                            <input type="text" asp-for="Username" class="form-control">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="NewPassword">	Нова Парола:</label>
+                            <input asp-for="NewPassword" type="password" class="form-control">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword">	Потвърди парола:</label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="FirstName">Собствено име:</label>
+                            <input asp-for="FirstName" type="text" class="form-control">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="SecondName">Бащино име:</label>
+                            <input asp-for="SecondName" type="text" class="form-control">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="LastName">Фамилия:</label>
+                            <input asp-for="LastName" type="text" class="form-control">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber">Телефонен номер</label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="EGN">ЕГН:</label>
+                            <input asp-for="EGN" type="number" class="form-control">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Email">Имейл</label>
+                            <input asp-for="Email" type="email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="DateOfEmployment">Дата назначаване:</label>
+                            <input asp-for="DateOfEmployment" type="date" class="form-control">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="DateOfTermination">Дата освобождаване(незадължителна):</label>
+                            <input asp-for="DateOfTermination" type="date" class="form-control">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="IsActive">Активен акаунт: </label>
+                            <div class="dropdown">
+                                <input asp-for="IsActive" class="form-check" />
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary">Запази</button>
+                        <button asp-action="ListUsers" type="button" class="btn btn-primary">Назад</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div class="card">
+        <div class="card-header">
+            <h3>Роли на потребителя</h3>
+        </div>
+        <div class="card-body">
+            @if (Model.Roles.Any())
+            {
+                foreach (var role in Model.Roles)
+                {
+                    <h5 class="card-title">@role</h5>
+                }
+            }
+            else
+            {
+                <h5 class="card-title">Не принадлежи към роля</h5>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="ManageUserRoles" asp-route-userId="@Model.Id" class="btn btn-primary">Промени роли</a>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.3.1.js"></script>
+</body>
+</html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

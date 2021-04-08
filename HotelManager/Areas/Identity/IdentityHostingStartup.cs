@@ -26,7 +26,8 @@ namespace HotelManager.Areas.Identity
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.SignIn.RequireConfirmedAccount = false;
-                    })
+                    options.Password.RequiredLength = 2;
+                })
                 .AddRoles<IdentityRole>()    
                 .AddEntityFrameworkStores<AuthDbContext>();
             });

@@ -50,7 +50,7 @@ namespace HotelManager.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Запомни ме")]
             public bool RememberMe { get; set; }
         }
 
@@ -82,15 +82,9 @@ namespace HotelManager.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByNameAsync(Input.Username);
                     _logger.LogInformation("User logged in.");
-                    if(User.IsInRole("admin"))
-                    {
-                        RedirectToAction("HomeAdmin","Home");
-                    }
-                    else
-                    {
-                        RedirectToAction("HomeUser", "Home");
-                    }
+                    return RedirectToAction("index", "Home");
                 }
                 if (result.RequiresTwoFactor)
                 {

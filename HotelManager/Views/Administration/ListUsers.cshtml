@@ -1,0 +1,56 @@
+﻿@using HotelManager.Areas.Identity.Data
+@model IEnumerable<AuthUser>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ListUsers</title>
+    <link href="SiteStile.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search">
+
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Търсене</button>
+            <button asp-controller="Administration" asp-action="AddUser" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Добавяне</button>
+
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Потребителско име</th>
+                    <th scope="col">Собствено име</th>
+                    <th scope="col">Бащино име</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Имейл</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                <tr>
+                    <th scope="row"></th>
+                    <td>@user.UserName</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.SecondName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary" asp-route-id="@user.Id">Редактирай</a>
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Administration" asp-action="DeleteUser" class="btn btn-primary" asp-route-id="@user.Id">Изтрии</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<IdentityRole>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AllRoles</title>
+    <link href="SiteStile.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Всички роли</h1>
+    </div>
+    <a asp-action="CreateRole" class="btn btn-primary mb-3 ml-3" cl>Добави роля</a>
+    <div class="container">
+        @foreach (var role in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-header">
+                    ID : @role.Id
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@role.Name</h5>
+                </div>
+                <div class="card-footer">
+                    <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
+                        <a asp-action="EditRole" class="btn btn-primary mr-2">Редактирай</a>
+                        <span id="confirmDeleteSpan_@role.Id" style="display:none">
+                            <span>Сигурни ли сте че искате да изтриете ролята?</span>
+                            <button type="submit" class="btn btn-danger">Да</button>
+                            <a href="#" class="btn btn-primary"
+                               onclick="confirmDelete('@role.Id', false)">Не</a>
+                        </span>
+                        <span id="deleteSpan_@role.Id">
+                            <a href="#" class="btn btn-danger"
+                               onclick="confirmDelete('@role.Id', true)">Изтрии</a>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>
+@section Scripts {
+    <script src="~/js/confirmDelete.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.3.1.js"></script>
+}

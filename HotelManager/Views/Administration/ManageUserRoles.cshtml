@@ -1,0 +1,42 @@
+﻿@model List<HotelManager.ViewModels.UserRoleViewModel>
+@{
+    var userId = ViewBag.userId;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AddOrDeleteRole</title>
+    <link href="SiteStile.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="card-header">
+        <h1 class="display-4">Добавяне или изтриване на роля</h1>
+    </div>
+    <form method="post">
+        <div class="card-body">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="form-check m-1">
+                    <input type="hidden" asp-for="@Model[i].RoleId" />
+                    <input type="hidden" asp-for="@Model[i].RoleName" />
+                    <input asp-for="@Model[i].IsSelected" class="from-check-input" />
+                    <label class="form-check-label" asp-for="@Model[i].IsSelected">
+                        @Model[i].RoleName
+                    </label>
+                </div>
+            }
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Запази</button>
+        <a asp-action="EditUser" asp-route-id="@userId" class="btn btn-primary">Назад</a>
+    </div>
+    </form>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.3.1.js"></script>
+</body>
+</html>
