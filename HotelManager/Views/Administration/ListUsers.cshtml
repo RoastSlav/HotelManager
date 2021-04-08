@@ -1,69 +1,20 @@
 ﻿@using HotelManager.Areas.Identity.Data
 @model IEnumerable<AuthUser>
-<h1>Потребители</h1>
-
-@if (Model.Any())
-{
-    <a asp-area="Identity" asp-controller="Account" asp-action="Register"
-       class="btn btn-primary mb-3">
-        Добави нов потребител
-    </a>
-
-    foreach (var user in Model)
-    {
-        <div class="card mb-3">
-            <div class="card-header">
-                ИД : @user.Id
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">@user.UserName</h5>
-                <h5 class="card-title">@user.FirstName</h5>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-danger">Редактирай</a>            
-            </div>
-        </div>
-    }
-}
-else
-{
-    <div class="card">
-        <div class="card-header>
-            Няма потребители
-        </div>
-        <div class="card-body">
-            <h5 class="card-body">
-                Използвайте бутона да създадете потребител
-            </h5>
-            <a class="btn btn-primary" asp-area="Identity" asp-page="Identity/Account/Register">
-                Добави потребител
-            </a>
-        </div>
-    </div>
-}
-
-
-
-
-
-
-@*<!doctype html>
+<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>ListUsers</title>
     <link href="SiteStile.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
-
 </head>
-
 <body>
     <div class="container">
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search">
 
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Търсене</button>
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Добавяне</button>
+            <button asp-controller="Administration" asp-action="AddUser" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Добавяне</button>
 
         </form>
         <table class="table table-striped">
@@ -79,130 +30,23 @@ else
                 </tr>
             </thead>
             <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <th scope="row"></th>
+                        <td>@user.UserName</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.SecondName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary">Редактирай</a>
+                        </td>
+                    </tr>
                 }
-
-                <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Предишна</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Следваща</a></li>
-            </ul>
-        </nav>
     </div>
 </body>
-</html>*@
+</html>
 

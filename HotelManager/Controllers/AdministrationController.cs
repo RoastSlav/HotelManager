@@ -29,6 +29,42 @@ namespace HotelManager.Controllers
         }
 
         [HttpGet]
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            //var user = await userManager.FindByIdAsync(id);
+
+            //if(user == null)
+            //{
+            //    return View("NotFound");
+            //}
+
+            //var userRoles = await userManager.GetRolesAsync(user);
+
+            //var model = new EditUserViewModel
+            //{
+            //    Id = user.Id,
+            //    Username = user.UserName,
+            //    FirstName = user.FirstName,
+            //    SecondName = user.SecondName,
+            //    LastName = user.LastName,
+            //    PhoneNumber = user.PhoneNumber,
+            //    EGN = user.EGN,
+            //    Email = user.Email,
+            //    DateOfEmployment = user.DateOfEmployment,
+            //    DateOfTermination = user.DateOfTermination,
+            //    IsActive = !user.LockoutEnabled,
+            //    Roles = userRoles
+            //};
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult ListUsers()
         {
             var users = userManager.Users.ToList();
@@ -60,6 +96,6 @@ namespace HotelManager.Controllers
             }
             return View();
 
-    }
+        }
     }
 }
