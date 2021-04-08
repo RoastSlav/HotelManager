@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-footer">
                     <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
-                        <a asp-action="EditRole" class="btn btn-primary mr-2">Редактирай</a>
+                        <a asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-primary mr-2">Редактирай</a>
                         <span id="confirmDeleteSpan_@role.Id" style="display:none">
                             <span>Сигурни ли сте че искате да изтриете ролята?</span>
                             <button type="submit" class="btn btn-danger">Да</button>
