@@ -15,8 +15,10 @@
     <div class="text-center">
         <h1 class="display-4">Добре дошли</h1>
     </div>
-    <button type="button" class="btn btn-info btn-block">Стаи</button>
-    <button type="button" class="btn btn-info btn-block">Клиенти</button>
-    <button type="button" class="btn btn-info btn-block">Резервации</button>
+    <div>
+        <a asp-controller="Room" asp-action="ListRoom" class="btn btn-info btn-primary mt-3 card-header">Стаи</a>
+        <a asp-controller="Client" asp-action="ListClient" class="btn btn-info btn-primary mt-3 card-header">Клиенти</a>
+        <a asp-controller="Reservation" asp-action="ListReservation" class="btn btn-info btn-primary mt-3 card-header">Резервации</a>
+    </div> 
 </body>
 </html>

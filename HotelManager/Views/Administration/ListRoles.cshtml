@@ -19,32 +19,44 @@
         </form>
     </div>
     <div class="container">
-        @foreach (var role in Model)
-        {
-            <div class="card mt-3">
-                <div class="card-header">
-                    ID : @role.Id
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">@role.Name</h5>
-                </div>
-                <div class="card-footer">
-                    <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
-                        <a asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-primary mr-2">Редактирай</a>
-                        <span id="confirmDeleteSpan_@role.Id" style="display:none">
-                            <span>Сигурни ли сте че искате да изтриете ролята?</span>
-                            <button type="submit" class="btn btn-danger">Да</button>
-                            <a href="#" class="btn btn-primary"
-                               onclick="confirmDelete('@role.Id', false)">Не</a>
-                        </span>
-                        <span id="deleteSpan_@role.Id">
-                            <a href="#" class="btn btn-danger"
-                               onclick="confirmDelete('@role.Id', true)">Изтрии</a>
-                        </span>
-                    </form>
-                </div>
-            </div>
-        }
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Роля</th>
+                    <th scope="col">ID</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <th scope="row"></th>
+                        <td>@role.Name</td>
+                        <td>@role.Id</td>
+                        <td>
+                            <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary" asp-route-id="@role.Id">Редактирай</a>
+                        </td>
+                        <td>
+                            <form method="post" asp-action="DeleteRole" asp-route-id="@role.Id">
+                                <span id="confirmDeleteSpan_@role.Id" style="display:none">
+                                    <span>Сигурни ли стe?<br /></span>
+                                    <button type="submit" class="btn btn-danger">Да</button>
+                                    <a href="#" class="btn btn-primary"
+                                       onclick="confirmDelete('@role.Id', false)">Не</a>
+                                </span>
+                                <span id="deleteSpan_@role.Id">
+                                    <a href="#" class="btn btn-danger"
+                                       onclick="confirmDelete('@role.Id', true)">Изтрии</a>
+                                </span>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
