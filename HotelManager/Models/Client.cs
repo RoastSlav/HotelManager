@@ -20,7 +20,7 @@ namespace HotelManager.Models
 
         [Phone]
         [Required]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [EmailAddress]
         [Required]
@@ -29,7 +29,7 @@ namespace HotelManager.Models
         [Required]
         public bool Adult { get; set; }
 
-        public int CurrentReservatonId { get; set; }
+        public int? CurrentReservatonId { get; set; }
         public Reservation Reservation { get; set; }
     }
 }

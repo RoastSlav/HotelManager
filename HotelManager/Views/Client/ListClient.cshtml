@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Client>
 <!doctype html>
 <html>
 <head>
@@ -12,20 +8,16 @@
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
 
 </head>
-
 <body>
     <div class="container">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search">
-
+        <form class="form-inline my-2 my-lg-0" method="get" asp-action="clientSearch">
+            <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Търсене</button>
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Добавяне</button>
-
+            <a asp-action="AddClient" class="btn btn-outline-primary my-2 my-sm-0">Добавяне</a>
         </form>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col"></th>
                     <th scope="col">Собствено име </th>
                     <th scope="col">Фамилия</th>
                     <th scope="col">Телефонен номер</th>
@@ -33,127 +25,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-link">Редактирай</button>
-                    </td>
-                </tr>
+                @foreach (var client in Model)
+                {
+                    <tr>
+                        <td>@client.FirstName</td>
+                        <td>@client.LastName</td>
+                        <td>@client.PhoneNumber</td>
+                        <td>@client.Email</td>
+                        <td>
+                            <a asp-action="EditClient" asp-route-id="@client.clientId" class="btn btn-primary">Редактирай</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Предишна</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Следваща</a></li>
-            </ul>
-        </nav>
     </div>
 </body>
 </html>

@@ -31,7 +31,7 @@ namespace HotelManager.Models
         [Required]
         public decimal PriceForNonAdult { get; set; }
 
-        public int CurrentReservatonId { get; set; }
+        public int? CurrentReservatonId { get; set; }
         public Reservation Reservation { get; set; }
     }
 }

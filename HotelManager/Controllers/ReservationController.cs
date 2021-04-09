@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace HotelManager.Controllers
 {
-    public class RoomController : Controller
+    public class ReservationController : Controller
     {
         [HttpGet]
-        public IActionResult ListRoom() 
-        {
-            return View(); 
-        }
-
-        [HttpGet]
-        public IActionResult AddRoom()
+        public IActionResult ListReservation()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult EditRoom()
+        public IActionResult AddReservation()
         {
             return View();
         }
 
+        [HttpGet]
+        public IActionResult EditReservation()
+        {
+            return View();
+        }
     }
 }

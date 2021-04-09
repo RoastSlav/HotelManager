@@ -4,14 +4,16 @@ using HotelManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelManager.Migrations.HotelManagerDb
 {
     [DbContext(typeof(HotelManagerDbContext))]
-    partial class HotelManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210409145859_fixforclient")]
+    partial class fixforclient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace HotelManager.Migrations.HotelManagerDb
                     b.Property<bool>("Adult")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("CurrentReservatonId")
+                    b.Property<int>("CurrentReservatonId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -96,7 +98,7 @@ namespace HotelManager.Migrations.HotelManagerDb
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CurrentReservatonId")
+                    b.Property<int>("CurrentReservatonId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("PriceForAdult")
@@ -118,8 +120,7 @@ namespace HotelManager.Migrations.HotelManagerDb
                     b.HasKey("RoomId");
 
                     b.HasIndex("CurrentReservatonId")
-                        .IsUnique()
-                        .HasFilter("[CurrentReservatonId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Rooms");
                 });
@@ -128,14 +129,18 @@ namespace HotelManager.Migrations.HotelManagerDb
                 {
                     b.HasOne("HotelManager.Models.Reservation", "Reservation")
                         .WithMany("Guests")
-                        .HasForeignKey("CurrentReservatonId");
+                        .HasForeignKey("CurrentReservatonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HotelManager.Models.Room", b =>
                 {
                     b.HasOne("HotelManager.Models.Reservation", "Reservation")
                         .WithOne("Room")
-                        .HasForeignKey("HotelManager.Models.Room", "CurrentReservatonId");
+                        .HasForeignKey("HotelManager.Models.Room", "CurrentReservatonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

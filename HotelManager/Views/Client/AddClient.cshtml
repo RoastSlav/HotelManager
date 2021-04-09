@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "Add a client";
-}
+﻿@model Client 
 <!doctype html>
 <html>
 <head>
@@ -13,47 +8,47 @@
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
 
 </head>
-
 <body>
     <div class="text-center">
         <h1 class="display-4">Добавяне на клиент</h1>
     </div>
     <div class="container">
-        <table class="table table-striped">
-
-            <tbody>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Собствено име</td>
-                    <td><input type="text" class="form-control col-12" id="usr1"></td>
-                    <td>Фамилия</td>
-                    <td><input type="text" class="form-control col-12" id="usr2"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Телефон</td>
-                    <td><input type="text" class="form-control col-12" id="usr3"></td>
-                    <td>Имейл</td>
-                    <td><input type="text" class="form-control col-12" id="usr4"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Възрастен</td>
-                    <td><div><label><input type="checkbox" value="">Над 18 год.</label></div></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-primary">Добави</button>
+        <form method="post" asp-action="AddClient">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Собствено име</td>
+                        <td><input asp-for="FirstName" type="text" class="form-control col-12" id="usr1"></td>
+                        <td>Фамилия</td>
+                        <td><input asp-for="LastName" type="text" class="form-control col-12" id="usr2"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Телефон</td>
+                        <td><input asp-for="PhoneNumber" type="text" class="form-control col-12" id="usr3"></td>
+                        <td>Имейл</td>
+                        <td><input asp-for="Email" type="email" class="form-control col-12" id="usr4"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>Възрастен</td>
+                        <td><div><label><input asp-for="Adult" type="checkbox">Над 18 год.</label></div></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Добави</button>
+        </form>        
     </div>
 </body>
 </html>
