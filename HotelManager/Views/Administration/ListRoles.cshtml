@@ -37,7 +37,7 @@
                         <td>@role.Name</td>
                         <td>@role.Id</td>
                         <td>
-                            <a asp-area="" asp-controller="Administration" asp-action="EditUser" class="btn btn-primary" asp-route-id="@role.Id">Редактирай</a>
+                            <a asp-controller="Administration" asp-action="EditRole" class="btn btn-primary" asp-route-id="@role.Id">Редактирай</a>
                         </td>
                         <td>
                             <form method="post" asp-action="DeleteRole" asp-route-id="@role.Id">
