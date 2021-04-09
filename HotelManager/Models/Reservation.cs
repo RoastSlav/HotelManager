@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelManager.Models;
 
 namespace HotelManager.Models
 {
     public class Reservation
     {
-        public int ID { get; set; }
+        [Required]
+        [Key]
+        public int reservationId { get; set; }
 
         [Required]
-        public int RoomNumber { get; set; }
+        public Room Room { get; set; }
 
         [Required]
-        public string ByUser { get; set; }
+        public string creatingUserId { get; set; }
 
         [Required]
-        public string Guests { get; set; }
+        public ICollection<Client> Guests { get; set; }
 
         [Required]
         public DateTime ReservationDate { get; set; }
@@ -25,9 +29,11 @@ namespace HotelManager.Models
         [Required]
         public DateTime LeavingDate { get; set; }
 
-        public bool IncludedBreakfast { get; set; } = false;
+        [Required]
+        public bool IncludedBreakfast { get; set; }
 
-        public bool AllInclusive { get; set; } = false;
+        [Required]
+        public bool AllInclusive { get; set; }
 
         [Required]
         public decimal TotalPrice { get; set; }

@@ -8,7 +8,9 @@ namespace HotelManager.Models
 {
     public class Client
     {
-        public int ID { get; set; }
+        [Key]
+        [Required]
+        public int clientId { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -16,12 +18,18 @@ namespace HotelManager.Models
         [Required]
         public string LastName { get; set; }
 
+        [Phone]
         [Required]
         public int PhoneNumber { get; set; }
 
+        [EmailAddress]
         [Required]
         public string Email { get; set; }
 
-        public bool Adult { get; set; } = true;
+        [Required]
+        public bool Adult { get; set; }
+
+        public int CurrentReservatonId { get; set; }
+        public Reservation Reservation { get; set; }
     }
 }
