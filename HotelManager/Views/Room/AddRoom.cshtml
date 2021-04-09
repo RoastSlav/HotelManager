@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "Adding a room";
-}
+﻿@model Room
 <!doctype html>
 <html>
 <head>
@@ -19,49 +14,45 @@
         <h1 class="display-4">Добавяне на стая</h1>
     </div>
     <div class="container">
-        <table class="table table-striped">
-
-            <tbody>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Стая</td>
-                    <td>
-                        <label for="usr">№:</label>
-                        <input type="number">
-                    </td>
-                    <td>Тип</td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                Избери
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Две единични легла</a></li>
-                                <li><a href="#">Апартамент</a></li>
-                                <li><a href="#">Стая с двойно легло</a></li>
-                                <li><a href="#">Пентхаус</a></li>
-                                <li><a href="#">Мезонет</a></li>
-
-                            </ul>
-                        </div>
-                    </td>
-                    <td>Капацитет</td>
-                    <td><input type="number"></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Цена(възрастен):</td>
-                    <td><input type="text" class="form-control col-12" id="usr4"></td>
-                    <td>Цена(дете):</td>
-                    <td><input type="text" class="form-control col-12" id="usr5"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-primary">Добави</button>
+        <form method="post" asp-action="AddRoom">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Номер на стаята:</label>
+                            <br />
+                            <input asp-for="RoomNumber" type="text">
+                        </td>
+                        <td>
+                            <label>Тип</label>
+                            <div class="dropdown">                              
+                                <select asp-for="RoomType" asp-items="@Html.GetEnumSelectList<RoomType>()">
+                                    <option selected="selected" value="">Изберете тип</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <label>Капацитет</label>
+                            <br />
+                            <input asp-for="Capacity" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Цена(възрастен):</label>
+                            <input asp-for="PriceForAdult" type="text" class="form-control col-12">
+                        </td>
+                        <td>
+                            <label>Цена(дете):</label>
+                            <input asp-for="PriceForNonAdult" type="text" class="form-control col-12">
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary ml-3">Добави</button>
+        </form>
     </div>
 </body>
 </html>

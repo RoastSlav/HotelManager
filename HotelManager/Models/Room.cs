@@ -34,4 +34,16 @@ namespace HotelManager.Models
         public int? CurrentReservatonId { get; set; }
         public Reservation Reservation { get; set; }
     }
+
+    public enum RoomType
+    {
+        [Display(Name = "Две единични легла")]
+        TwoSingleBed = 1,
+        [Display(Name = "Апартамент")]
+        Apartament = 2,
+        [Display(Name = "Двойно легло")]
+        DoubleBed = 3,
+        [Display(Name = "Мезонет")]
+        Penthouse = 4,
+    }
 }
