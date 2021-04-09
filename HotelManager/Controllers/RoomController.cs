@@ -19,20 +19,20 @@ namespace HotelManager.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult roomSearch(string search)
-        {
-            if (!string.IsNullOrEmpty(search))
-            {
-                using (var context = new HotelManagerDbContext())
-                {
-                    var rooms = context.Rooms.AsParallel().Where(x => x.RoomNumber.Equals(int.Parse(search))).ToList();
-                    return View("ListRooms", rooms);
-                }
-            }
+        //[HttpGet]
+        //public IActionResult roomSearch(string search)
+        //{
+        //    if (!string.IsNullOrEmpty(search))
+        //    {
+        //        using (var context = new HotelManagerDbContext())
+        //        {
+        //            var rooms = context.Rooms.AsParallel().Where(x => x.RoomNumber.Equals(int.Parse(search))).ToList();
+        //            return View("ListRooms", rooms);
+        //        }
+        //    }
 
-            return RedirectToAction("ListRooms");
-        }
+        //    return RedirectToAction("ListRooms");
+        //}
 
         [HttpGet]
         public IActionResult AddRoom()

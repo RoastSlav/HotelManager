@@ -11,11 +11,11 @@
 
 <body>
     <div class="container">
-        <form class="form-inline my-2 my-lg-0" method="get" asp-action="roomSearch">
+        @*<form class="form-inline my-2 my-lg-0" method="get" asp-action="roomSearch">
             <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Търсене</button>
-            <a asp-action="AddRoom" class="btn btn-outline-primary my-2 my-sm-0 ml-3">Добавяне</a>
-        </form>
+        </form>*@
+        <a asp-action="AddRoom" class="btn btn-outline-primary my-2 my-sm-0 ml-3">Добавяне</a>
         <table class="table table-striped mt-3">
             <thead>
                 <tr>
@@ -24,6 +24,7 @@
                     <th scope="col">Капацитет</th>
                     <th scope="col">Тип</th>
                     <th scope="col">Свободна/Заета</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
