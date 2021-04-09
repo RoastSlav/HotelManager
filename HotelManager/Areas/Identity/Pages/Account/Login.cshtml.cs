@@ -77,6 +77,14 @@ namespace HotelManager.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                var Luser = await _userManager.FindByNameAsync(Input.Username);
+                if(Luser.DateOfTermination<DateTime.Now)
+                {
+                    Luser.LockoutEnabled = true;
+                    await _userManager.SetLockoutEnabledAsync(Luser, true);
+                    await _userManager.SetLockoutEndDateAsync(Luser, new DateTime(9999, 12, 30));
+                }
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
