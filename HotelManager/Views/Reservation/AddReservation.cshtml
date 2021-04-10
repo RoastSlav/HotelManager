@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "Add a reservation";
-}
+﻿@model Reservation
 <!doctype html>
 <html>
 <head>
@@ -19,63 +14,57 @@
         <h1 class="display-4">Нова резервация</h1>
     </div>
     <div class="container">
-        <table class="table table-striped">
-
-            <tbody>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Стая</td>
-                    <td>
-                        <label for="usr">№:</label>
-                        <input type="number">
-                    </td>
-                    <td>Резервацията е направена от:</td>
-                    <td><input type="text" class="form-control col-12" id="usr4"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Клиенти</td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                Избери
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                            </ul>
-                        </div>
-                    </td>
-                    <td>Закуска</td>
-                    <td>
-                        <div><label><input type="checkbox" value="">Да</label></div>
-                    </td>
-                    <td>All Inclusive</td>
-                    <td><div><label><input type="checkbox" value="">Да</label></div></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Дата настаняване:</td>
-                    <td><input type="date" class="form-control col-12" id="usr5"></td>
-                    <td>Дата напускане:</td>
-                    <td><input type="date" class="form-control col-12" id="usr6"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>Дължима сума</td>
-                    <td><input type="text" class="form-control col-12" id="usr8"></td>
-                    <td></td>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-            </tbody>
-        </table>
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Добави</button>
+        <form asp-action="CreateReservation" method="post">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Номер на стая</label>
+                            <br />
+                            <input asp-for="Room" type="text">
+                        </td>
+                        <td>
+                            <label>Дължима сума</label>
+                            <input asp-for="TotalPrice" type="text" class="form-control col-12" disabled id="usr8">                         
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Дата настаняване:</label>
+                            <input asp-for="ReservationDate" type="date" class="form-control col-12" id="usr5">
+                        </td>
+                        <td>
+                            <label>Дата напускане:</label>
+                            <input asp-for="LeavingDate" type="date" class="form-control col-12" id="usr6">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div><label><input asp-for="IncludedBreakfast" type="checkbox" value="">  Закуска</label></div>
+                        </td>
+                        <td>
+                            <div><label><input asp-for="AllInclusive" type="checkbox" value="">  All Inclusive</label></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Клиенти</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Избери
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    </ul>
+                                </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Добави</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>    
     </div>
 </body>
 </html>

@@ -9,13 +9,13 @@ namespace HotelManager.App_Data
 {
     public class ContextSeed
     {
-        public static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
+        public static async Task SeedRolesAsync(UserManager<AuthUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Admin.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.User.ToString()));
         }
 
-        public static async Task SeedSuperAdminAsync(UserManager<AuthUser> userManager)
+        public static async Task SeedSuperAdminAsync(UserManager<AuthUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             var defaultUser = new AuthUser
             {
