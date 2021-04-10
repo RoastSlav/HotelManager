@@ -53,29 +53,29 @@ namespace HotelManager.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> AddReservation(Reservation model)
-        {
-            if (ModelState.IsValid)
-            {
-                var reservation = new Reservation
-                {
-                    ReservationDate = model.ReservationDate,
-                    LeavingDate = model.LeavingDate,
-                    AllInclusive = model.AllInclusive,
-                    IncludedBreakfast = model.IncludedBreakfast
-                };
+        //[HttpPost]
+        //public async Task<IActionResult> AddReservation(Reservation model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var reservation = new Reservation
+        //        {
+        //            ReservationDate = model.ReservationDate,
+        //            LeavingDate = model.LeavingDate,
+        //            AllInclusive = model.AllInclusive,
+        //            IncludedBreakfast = model.IncludedBreakfast
+        //        };
 
-                using (var context = new HotelManagerDbContext())
-                {
-                    await context.Reservations.AddAsync(reservation);
-                    await context.SaveChangesAsync();
-                    var reservationId = context.Reservations.Where(x => x.ReservationDate);
-                }
+        //        using (var context = new HotelManagerDbContext())
+        //        {
+        //            await context.Reservations.AddAsync(reservation);
+        //            await context.SaveChangesAsync();
+        //            var reservationId = context.Reservations.Select(reservation);
+        //        }
 
-                return RedirectToAction("ListRoomsForReservation")
-            }
-        }
+        //        return RedirectToAction("ListRoomsForReservation")
+        //    };
+        //}
 
         [HttpGet]
         public IActionResult EditReservation()

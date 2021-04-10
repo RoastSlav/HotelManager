@@ -26,7 +26,7 @@ namespace HotelManager.Controllers
             {
                 using (var context = new HotelManagerDbContext())
                 {
-                    var clients = context.Clients.AsParallel().Where(x => x.FirstName.ToLower().Contains(search.ToLower())).ToList();
+                    var clients = context.Clients.AsParallel().Where(x => x.FirstName.ToLower().Contains(search.ToLower()) || x.Email.ToLower().Contains(search.ToLower()) || x.PhoneNumber.Contains(search)).ToList();
                     return View("ListClient", clients);
                 }
             }

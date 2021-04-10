@@ -364,7 +364,7 @@ namespace HotelManager.Controllers
         {
             if (!string.IsNullOrEmpty(search))
             {
-                var users = userManager.Users.Where(x => x.UserName.Contains(search)).ToList();
+                var users = userManager.Users.Where(x => x.UserName.ToLower().Contains(search.ToLower()) || x.Email.ToLower().Contains(search.ToLower())).ToList();
                 return View("ListUsers", users);
             }  
             

@@ -53,7 +53,7 @@
             </table>
             <button class="btn btn-primary my-2 my-sm-0" asp-route-RoomId="@Model.RoomId" type="submit">Запазване</button>
         </form>
-        <form method="post" asp-action="DeleteRoom" asp-route-id="@Model.RoomId">
+        <form method="post" class="mt-3" asp-action="DeleteRoom" asp-route-id="@Model.RoomId">
             <span id="confirmDeleteSpan_@Model.RoomId" style="display:none">
                 <span>Сигурни ли стe?</span>
                 <button type="submit" class="btn btn-danger">Да</button>
