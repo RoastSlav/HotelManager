@@ -19,20 +19,15 @@ namespace HotelManager.Controllers
             }
         }
 
-        //[HttpGet]
-        //public IActionResult roomSearch(string search)
-        //{
-        //    if (!string.IsNullOrEmpty(search))
-        //    {
-        //        using (var context = new HotelManagerDbContext())
-        //        {
-        //            var rooms = context.Rooms.AsParallel().Where(x => x.RoomNumber.Equals(int.Parse(search))).ToList();
-        //            return View("ListRooms", rooms);
-        //        }
-        //    }
-
-        //    return RedirectToAction("ListRooms");
-        //}
+        [HttpGet]
+        public IActionResult showVacant()
+        {
+                using (var context = new HotelManagerDbContext())
+                {
+                    var rooms = context.Rooms.AsParallel().Where(x => x.Vacant == true).ToList();
+                    return View("ListRoom", rooms);
+                }
+        }
 
         [HttpGet]
         public IActionResult AddRoom()
@@ -50,7 +45,7 @@ namespace HotelManager.Controllers
                     RoomNumber = model.RoomNumber,
                     Capacity = model.Capacity,
                     RoomType = model.RoomType,
-                    Vacant = model.Vacant,
+                    Vacant = true,
                     PriceForAdult = model.PriceForAdult,
                     PriceForNonAdult = model.PriceForNonAdult
                 };

@@ -15,7 +15,14 @@
             <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Търсене</button>
         </form>*@
-        <a asp-action="AddRoom" class="btn btn-outline-primary my-2 my-sm-0 ml-3">Добавяне</a>
+        <form method="post">
+            <a asp-action="showVacant" class="btn btn-outline-primary my-2 my-sm-0 ml-3">Покажи свободни</a>
+            <a asp-action="ListRoom" class="btn btn-outline-primary my-2 my-sm-0 ml-3">Покажи всички</a>
+            @if (@User.IsInRole("Admin"))
+            {
+                <a asp-action="AddRoom" class="btn btn-outline-primary my-2 my-sm-0 ml-3">Добавяне</a>
+            }
+        </form>
         <table class="table table-striped mt-3">
             <thead>
                 <tr>
@@ -44,7 +51,7 @@
                             }
                         </td>
                         <td>
-                            @if (!room.Vacant)
+                            @if (room.Vacant)
                             {
                                 <p>Свободна</p>;
                             }

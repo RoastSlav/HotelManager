@@ -2,7 +2,7 @@
 
 namespace HotelManager.Migrations.HotelManagerDb
 {
-    public partial class roomtype : Migration
+    public partial class fixforRoomVacant : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
