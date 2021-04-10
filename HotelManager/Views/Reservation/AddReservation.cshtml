@@ -14,20 +14,9 @@
         <h1 class="display-4">Нова резервация</h1>
     </div>
     <div class="container">
-        <form asp-action="CreateReservation" method="post">
+        <form asp-action="AddReservation" method="post">
             <table class="table table-striped">
                 <tbody>
-                    <tr>
-                        <td>
-                            <label>Номер на стая</label>
-                            <br />
-                            <input asp-for="Room" type="text">
-                        </td>
-                        <td>
-                            <label>Дължима сума</label>
-                            <input asp-for="TotalPrice" type="text" class="form-control col-12" disabled id="usr8">                         
-                        </td>
-                    </tr>
                     <tr>
                         <td>
                             <label>Дата настаняване:</label>
@@ -47,19 +36,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <label>Клиенти</label>
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                        Избери
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                    </ul>
-                                </div>
+                        <td>   
                         </td>
                         <td>
-                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Добави</button>
+                            <a asp-action="AddReservation" class="btn btn-primary my-2 my-sm-0" type="submit">Избери стая</a>
                         </td>
                     </tr>
                 </tbody>

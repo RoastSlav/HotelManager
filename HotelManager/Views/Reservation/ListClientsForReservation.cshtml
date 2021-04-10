@@ -1,0 +1,45 @@
+﻿@model HotelManager.ViewModels.AddReservationViewModel
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ListClient</title>
+    <link href="SiteStile.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <div class="container">
+        <form class="form-inline my-2 my-lg-0" method="get" asp-action="clientSearch">
+            <input class="form-control mr-sm-3 col-9" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Търсене</button>
+            <a asp-action="AddClient" class="btn btn-outline-primary my-2 my-sm-0">Добавяне</a>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Собствено име </th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Телефонен номер</th>
+                    <th scope="col">Имейл</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var client in Model.clients)
+                {
+                    <tr>
+                        <td>@client.FirstName</td>
+                        <td>@client.LastName</td>
+                        <td>@client.PhoneNumber</td>
+                        <td>@client.Email</td>
+                        <td>
+                            <a asp-action=" AddClientToReservation" asp-route-client="@client" asp-route-model="@Model" class="btn btn-primary">Добави</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-action="AddReservation" asp-route-model="@Model" class="btn btn-primary"></a>
+    </div>
+</body>
+</html>
