@@ -101,7 +101,7 @@ namespace HotelManager.Controllers
                         RoomNumber = model.RoomNumber,
                         Capacity = model.Capacity,
                         RoomType = model.RoomType,
-                        Vacant = model.Vacant,
+                        Vacant = true,
                         PriceForAdult = model.PriceForAdult,
                         PriceForNonAdult = model.PriceForNonAdult
                     };
