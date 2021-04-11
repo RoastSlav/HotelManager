@@ -45,7 +45,7 @@ namespace HotelManager.Controllers
                     RoomNumber = model.RoomNumber,
                     Capacity = model.Capacity,
                     RoomType = model.RoomType,
-                    Vacant = true,
+                    Vacant = model.Vacant,
                     PriceForAdult = model.PriceForAdult,
                     PriceForNonAdult = model.PriceForNonAdult
                 };
