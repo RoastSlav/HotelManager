@@ -44,7 +44,7 @@
                         <td>
                             @foreach (var type in @Html.GetEnumSelectList<RoomType>())
                             {
-                                if(type.Value == room.RoomType)
+                                if (type.Value == room.RoomType)
                                 {
                                     <p>@type.Text</p>
                                 }
@@ -60,9 +60,18 @@
                                 <p> Заета </p>;
                             }
                         </td>
+                        @if (User.IsInRole("Admin"))
+                        { 
                         <td>
                             <a asp-action="EditRoom" asp-route-id="@room.RoomId" class="btn btn-primary">Редактирай</a>
                         </td>
+                        }
+                        else
+                        {
+                        <td>
+                            <a asp-action="DetailsRoom" asp-route-id="@room.RoomId" class="btn btn-primary">Покажи детайли</a>
+                        </td>
+                        }
                     </tr>
                 }
             </tbody>

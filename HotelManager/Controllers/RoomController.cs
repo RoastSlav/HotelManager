@@ -88,6 +88,33 @@ namespace HotelManager.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> DetailsRoom(int id)
+        {
+            using (var context = new HotelManagerDbContext())
+            {
+                var room = await context.Rooms.FindAsync(id);
+
+                if (room == null)
+                {
+                    return View("NotFound");
+                }
+
+                var model = new Room
+                {
+                    RoomId = room.RoomId,
+                    RoomNumber = room.RoomNumber,
+                    Capacity = room.Capacity,
+                    RoomType = room.RoomType,
+                    Vacant = room.Vacant,
+                    PriceForAdult = room.PriceForAdult,
+                    PriceForNonAdult = room.PriceForNonAdult
+                };
+
+                return View(model);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> EditRoom(Room model)
         {

@@ -1,0 +1,62 @@
+﻿@model Room
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>EditRoom</title>
+    <link href="SiteStile.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Детайли на стая</h1>
+    </div>
+    <div class="container">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Номер на стаята:</label>
+                            <br />
+                            <input asp-for="RoomNumber" disabled type="text">
+                        </td>
+                        <td>
+                            <label>Тип</label>
+                            <div class="dropdown">
+                                <select asp-for="RoomType" disabled asp-items="@Html.GetEnumSelectList<RoomType>()">
+                                    <option selected="selected" value="">Изберете тип</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <label>Капацитет</label>
+                            <br />
+                            <input asp-for="Capacity" disabled type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Цена(възрастен):</label>
+                            <input asp-for="PriceForAdult" type="text" disabled class="form-control col-12">
+                        </td>
+                        <td>
+                            <label>Цена(дете):</label>
+                            <input asp-for="PriceForNonAdult" type="text" disabled class="form-control col-12">
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a asp-action="ListRoom" class="btn btn-primary my-2 my-sm-0" type="submit">Назад</a>
+    </div>
+</body>
+</html>
+@section Scripts {
+    <script src="~/js/confirmDelete.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.3.1.js"></script>
+}
