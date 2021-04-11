@@ -1,7 +1,5 @@
 ﻿using HotelManager.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +8,7 @@ namespace HotelManager.Controllers
     public class RoomController : Controller
     {
         [HttpGet]
-        public IActionResult ListRoom() 
+        public IActionResult ListRoom()
         {
             using (var context = new HotelManagerDbContext())
             {
@@ -22,11 +20,11 @@ namespace HotelManager.Controllers
         [HttpGet]
         public IActionResult showVacant()
         {
-                using (var context = new HotelManagerDbContext())
-                {
-                    var rooms = context.Rooms.AsParallel().Where(x => x.Vacant == true).ToList();
-                    return View("ListRoom", rooms);
-                }
+            using (var context = new HotelManagerDbContext())
+            {
+                var rooms = context.Rooms.AsParallel().Where(x => x.Vacant == true).ToList();
+                return View("ListRoom", rooms);
+            }
         }
 
         [HttpGet]

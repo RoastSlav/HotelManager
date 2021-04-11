@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HotelManager.ViewModels
 {
@@ -18,7 +16,7 @@ namespace HotelManager.ViewModels
 
         [DataType(DataType.Password)]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
-        public string? ConfirmPassword { get; set; } 
+        public string? ConfirmPassword { get; set; }
 
         [Required]
         public string Id { get; set; }
@@ -57,7 +55,7 @@ namespace HotelManager.ViewModels
 
         [Required]
         public bool IsActive { get; set; }
-        
+
         public IList<string> Roles { set; get; }
     }
 }

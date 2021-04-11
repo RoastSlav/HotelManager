@@ -3,14 +3,13 @@ using HotelManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HotelManager.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -27,9 +26,9 @@ namespace HotelManager.Controllers
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
-           var role = await roleManager.FindByIdAsync(id);
+            var role = await roleManager.FindByIdAsync(id);
 
-            if(role == null)
+            if (role == null)
             {
                 return View("NotFound");
             }
@@ -42,7 +41,7 @@ namespace HotelManager.Controllers
 
             foreach (var user in userManager.Users)
             {
-                if(await userManager.IsInRoleAsync(user, role.Name))
+                if (await userManager.IsInRoleAsync(user, role.Name))
                 {
                     model.Users.Add(user.UserName);
                 }
@@ -65,7 +64,7 @@ namespace HotelManager.Controllers
                 role.Name = model.RoleName;
                 var result = await roleManager.UpdateAsync(role);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("ListRoles");
                 }
@@ -89,7 +88,7 @@ namespace HotelManager.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 IdentityRole identityRole = new IdentityRole
                 {
@@ -98,7 +97,7 @@ namespace HotelManager.Controllers
 
                 IdentityResult result = await roleManager.CreateAsync(identityRole);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("ListRoles");
                 }
@@ -161,12 +160,12 @@ namespace HotelManager.Controllers
                     DateOfEmployment = model.DateOfEmployment,
                     DateOfTermination = model.DateOfTermination,
                     PhoneNumber = model.PhoneNumber,
-                    LockoutEnabled = false                    
+                    LockoutEnabled = false
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("ListUsers");
                 }
@@ -186,7 +185,7 @@ namespace HotelManager.Controllers
         {
             var user = await userManager.FindByIdAsync(id);
 
-            if(user == null)
+            if (user == null)
             {
                 return View("NotFound");
             }
@@ -194,7 +193,7 @@ namespace HotelManager.Controllers
             {
                 var result = await userManager.DeleteAsync(user);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("ListUsers");
                 }
@@ -278,7 +277,7 @@ namespace HotelManager.Controllers
                 }
 
                 var result = await userManager.UpdateAsync(user);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("ListUsers");
                 }
@@ -299,7 +298,7 @@ namespace HotelManager.Controllers
             var user = await userManager.FindByIdAsync(userId);
             ViewBag.userId = userId;
 
-            if(user == null)
+            if (user == null)
             {
                 return View("NotFound");
             }
@@ -312,8 +311,8 @@ namespace HotelManager.Controllers
                 {
                     RoleId = role.Id,
                     RoleName = role.Name,
-                }; 
-           
+                };
+
                 if (await userManager.IsInRoleAsync(user, role.Name))
                 {
                     userRolesViewModel.IsSelected = true;
@@ -334,7 +333,7 @@ namespace HotelManager.Controllers
         {
             var user = await userManager.FindByIdAsync(userId);
 
-            if(user == null)
+            if (user == null)
             {
                 return View("NotFound");
             }
@@ -364,10 +363,10 @@ namespace HotelManager.Controllers
         {
             if (!string.IsNullOrEmpty(search))
             {
-                var users = userManager.Users.Where(x => x.UserName.ToLower().Contains(search.ToLower()) || x.Email.ToLower().Contains(search.ToLower())).ToList();
+                var users = userManager.Users.Where(x => x.UserName.ToLower().Contains(search.ToLower()) || x.Email.ToLower().Contains(search.ToLower()));
                 return View("ListUsers", users);
-            }  
-            
+            }
+
             return RedirectToAction("ListUsers");
         }
 

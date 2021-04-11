@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using HotelManager.Areas.Identity.Data;
+﻿using HotelManager.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HotelManager.Areas.Identity.Pages.Account
 {
@@ -22,7 +20,7 @@ namespace HotelManager.Areas.Identity.Pages.Account
         private readonly SignInManager<AuthUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<AuthUser> signInManager, 
+        public LoginModel(SignInManager<AuthUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<AuthUser> userManager)
         {
@@ -78,7 +76,7 @@ namespace HotelManager.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var Luser = await _userManager.FindByNameAsync(Input.Username);
-                if(Luser.DateOfTermination<DateTime.Now)
+                if (Luser.DateOfTermination < DateTime.Now)
                 {
                     Luser.LockoutEnabled = true;
                     await _userManager.SetLockoutEnabledAsync(Luser, true);

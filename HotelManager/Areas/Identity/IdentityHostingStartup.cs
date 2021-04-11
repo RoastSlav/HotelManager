@@ -1,9 +1,7 @@
-﻿using System;
-using HotelManager.Areas.Identity.Data;
+﻿using HotelManager.Areas.Identity.Data;
 using HotelManager.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +13,8 @@ namespace HotelManager.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
+            builder.ConfigureServices((context, services) =>
+            {
                 services.AddDbContext<AuthDbContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AuthDbContextConnection")));
@@ -29,7 +28,7 @@ namespace HotelManager.Areas.Identity
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequiredLength = 2;
                 })
-                .AddRoles<IdentityRole>()    
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AuthDbContext>();
             });
         }

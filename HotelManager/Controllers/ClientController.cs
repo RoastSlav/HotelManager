@@ -1,7 +1,5 @@
 ﻿using HotelManager.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,17 +10,17 @@ namespace HotelManager.Controllers
         [HttpGet]
         public IActionResult ListClient()
         {
-            using(var context = new HotelManagerDbContext())
+            using (var context = new HotelManagerDbContext())
             {
                 var clients = context.Clients.AsParallel().ToList();
                 return View(clients);
-            }           
+            }
         }
 
         [HttpGet]
         public IActionResult clientSearch(string search)
         {
-            if(!string.IsNullOrEmpty(search))
+            if (!string.IsNullOrEmpty(search))
             {
                 using (var context = new HotelManagerDbContext())
                 {
@@ -43,7 +41,7 @@ namespace HotelManager.Controllers
         [HttpPost]
         public async Task<IActionResult> AddClient(Client model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var client = new Client
                 {
@@ -68,11 +66,11 @@ namespace HotelManager.Controllers
         [HttpGet]
         public async Task<IActionResult> EditClient(int id)
         {
-            using(var context = new HotelManagerDbContext())
+            using (var context = new HotelManagerDbContext())
             {
                 var client = await context.Clients.FindAsync(id);
 
-                if(client == null)
+                if (client == null)
                 {
                     return View("NotFound");
                 }
@@ -94,10 +92,10 @@ namespace HotelManager.Controllers
         [HttpPost]
         public async Task<IActionResult> EditClient(Client model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 using (var context = new HotelManagerDbContext())
-                {                   
+                {
                     var client = new Client
                     {
                         clientId = model.clientId,

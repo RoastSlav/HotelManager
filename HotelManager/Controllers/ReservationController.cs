@@ -1,12 +1,8 @@
-﻿using HotelManager.Areas.Identity.Data;
-using HotelManager.Models;
+﻿using HotelManager.Models;
 using HotelManager.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace HotelManager.Controllers
 {
